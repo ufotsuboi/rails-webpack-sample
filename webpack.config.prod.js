@@ -6,6 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   entry: {
     bundle: './src/js/main.js',
+    style: './src/css/index.js',
   },
   output: {
     path: path.join(__dirname, 'public/dist'),
@@ -20,11 +21,11 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+        loader: 'style-loader!css-loader',
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader'),
+        loader: 'style-loader!css-loader!sass-loader',
       },
     ],
   },
@@ -41,6 +42,5 @@ module.exports = {
       },
     }),
     new ManifestPlugin(),
-    new ExtractTextPlugin('[name]-[hash].css', { allChunks: true }),
   ],
 };
