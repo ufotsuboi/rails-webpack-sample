@@ -1,3 +1,4 @@
+import '../css/main.scss';
 import React from 'react';
 import { render } from 'react-dom';
 
@@ -24,7 +25,7 @@ class Sample extends React.Component {
   render() {
     return (
       <div>
-        <h2>Hello World!!!</h2>
+        <h2 className="title">Hello World!</h2>
         <p>COUNT: {this.state.count}</p>
         <button onClick={this.increment.bind(this)}>+</button>
         <button onClick={this.decrement.bind(this)}>-</button>

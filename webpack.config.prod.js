@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -17,6 +18,14 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel',
       },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+      },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader'),
+      },
     ],
   },
   plugins: [
@@ -32,5 +41,6 @@ module.exports = {
       },
     }),
     new ManifestPlugin(),
+    new ExtractTextPlugin('[name]-[hash].css', { allChunks: true }),
   ],
 };
