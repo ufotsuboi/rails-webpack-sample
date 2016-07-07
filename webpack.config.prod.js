@@ -21,11 +21,11 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader',
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
       },
       {
         test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader',
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader'),
       },
     ],
   },
@@ -42,5 +42,6 @@ module.exports = {
       },
     }),
     new ManifestPlugin(),
+    new ExtractTextPlugin('[name]-[hash].css', { allChunks: true }),
   ],
 };
